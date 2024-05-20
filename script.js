@@ -1,11 +1,12 @@
 //your JS code here.
 let questionsElement = document.getElementById("questions")
-let userAnswers = JSON.parse(sessionStorage.getItem('progress')) | []
+let userAnswers = sessionStorage.getItem('progress') ? JSON.parse(sessionStorage.getItem('progress')) : []
 let tscore = 0
 
 let submit = document.getElementById("submit")
 
 document.addEventListener('DOMContentLoaded', function() {
+  console.log(userAnswers);
   let radioButtons = document.querySelectorAll("input[type='radio']")
   console.log(radioButtons);
   radioButtons.forEach((radioButton) => {
