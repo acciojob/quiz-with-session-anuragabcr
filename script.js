@@ -1,5 +1,32 @@
 //your JS code here.
+let questionsElement = document.getElementById("questions")
+let userAnswers = JSON.parse(sessionStorage.getItem('progress')) | []
+let tscore = 0
 
+let submit = document.getElementById("submit")
+
+document.addEventListener('DOMContentLoaded', function() {
+  let radioButtons = document.querySelectorAll("input[type='radio']")
+  console.log(radioButtons);
+  radioButtons.forEach((radioButton) => {
+    radioButton.addEventListener("click", function() {
+      userAnswers[this.name.charAt(this.name.length - 1)] = this.value
+      sessionStorage.setItem('progress', JSON.stringify(userAnswers))
+    })
+  })
+});
+
+submit.addEventListener("click", () => {
+  let score = document.getElementById("score")
+	for (let i = 0; i < questions.length; i++) {
+    const question = questions[i];
+    if (question.answer === userAnswers[i]) {
+      tscore += 1;
+    }
+  }
+  score.innerHTML = `Your score is ${tscore} out of 5.`
+  localStorage.setItem('score', tscore)
+})
 // Do not change code below this line
 // This code will just display the questions to the screen
 const questions = [
